@@ -2059,9 +2059,10 @@ Total memory: 0x2ac0000 .. 0x2ac9fff (2*160*128 = 40960 bytes).
 ### Radio Type
 ```
 57 | 02fa0000 | 10 | 00000000 01010100 00010120 202020ff | 90 06 || .... .... ...     ÿ || ...........    ÿ ||
-                     ????FTBF CN??BS?? ??????BP BPBPBP??
-   
-   - FT - Full Test Mode: 0x00 off, 0x01 on. DON`T SET TO ONE! MIGHT BRICK YOUR DEVICE!
+                     KLSTFTBF CNC?BS?? ??????BP BPBPBP??
+   - KL - KILL 0x00 Off , 0x01 On
+   - ST - STUN 0x00 Off , 0x01 On
+   - FT - Full Test Mode: 0x00 off, 0x01 on
    - BF - Band Frequency: 0x00 Rx: 400-480 136-174 Tx:400-480 136-174
                           0x01 Rx: 400-480 136-174 Tx:400-480 136-174 (12,5KHz Only)
                           0x02 Rx: 430-440 136-174 Tx:430-440 136-174
@@ -2080,9 +2081,14 @@ Total memory: 0x2ac0000 .. 0x2ac9fff (2*160*128 = 40960 bytes).
                           0x0f Rx: 420-520 144-148 Tx:420-520 144-148
                           0x10 Rx: 430-440 144-147 Tx:430-440 144-147
                           0x11 Rx: 430-440 136-174 Tx:136-174
-   - CN . Chinese: 0x00 chinese, 0x01 not chinese.                          
-   - BS - Band Select: 0x00 off, 0x00 on.
-   - BP - Band Select Password, ASCII, 0x20202020 when empty. Always 4 bytes? 
+   - CN . Country: 0x00 International, 0x01 English. (Set to 00 radio reset and goes in Chinese ,enable Menu' 23 and enable in Menu'11 chinese language                         
+   - C? - 01 then set to 00 if set country International CN
+   - BS - Enable Test Mode only for select Band Frequency  08= off  ; 09=on
+   - ????????				
+   - BP - Band Select Password, ASCII, 0x38373823 (878# password for enable band 220 MHz  0x0e) 4 bytes
+   - ?? - Always ff
+
+
                        
 57 | 02fa0010 | 10 | 44383738 55560001 00ffffff ffffffff | ac 06 || D878 UV.. .ÿÿÿ ÿÿÿÿ || D878UV...ÿÿÿÿÿÿÿ ||
                      RTRTRTRT RTRT  ?? ??
@@ -2099,7 +2105,7 @@ Total memory: 0x2ac0000 .. 0x2ac9fff (2*160*128 = 40960 bytes).
 
 This memory area is read before each write request. 
 
-   - PP - Program Password: Ascii, max 4 bytes, unused bytes are 0x00.
+   - PP - radio reading password, if you try to read the radio it asks for a password: Ascii, max 4 bytes, unused bytes are 0x00.
    - AC - Area Code: Ascii, max 4 bytes, unused bytes are 0x00.
 
 
